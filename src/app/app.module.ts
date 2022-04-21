@@ -7,13 +7,15 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HomeComponent } from './components/home/home.component';
 import { NewRegistrationComponent } from './components/new-registration/new-registration.component';
 import { FormsModule } from '@angular/forms';
+import { CarNumberValidatorDirective } from './directives/car-number-validator.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomeComponent,
-    NewRegistrationComponent
+    NewRegistrationComponent,
+    CarNumberValidatorDirective
   ],
   imports: [
     BrowserModule,

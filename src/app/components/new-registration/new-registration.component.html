@@ -2,6 +2,8 @@
     <div class="card-header">Registruoti automobilį techninei apžiūrai</div>
     <div class="card-body">
 
+     
+
         <form action="" (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="mb-3">
                 <label for="" class="form-label">Automobilio markė</label>
@@ -18,7 +20,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Registracijos numeris</label>
-                <input type="text"  id="" class="form-control" ngModel name="reg_number" required minlength="6"  maxlength="6">
+                <input type="text"  id="" class="form-control" ngModel name="reg_number" required minlength="6"  maxlength="6" CarNumberValidator> 
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Telefonas</label>
