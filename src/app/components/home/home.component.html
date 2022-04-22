@@ -21,7 +21,9 @@
                     <td>{{ registration.reg_number}}</td>
                     <td>{{ registration.year }}</td>
                     <td>{{ registration.phone }}</td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Ištrinti</button>
+                    </td>
 
                 </tr>
             </tbody>

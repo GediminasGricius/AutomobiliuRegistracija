@@ -26,6 +26,7 @@ export class NewRegistrationComponent implements OnInit {
       fData.phone,
       fData.year
     );
+    console.log(registration);
     this.registrationService.addRegistration(registration).subscribe((response)=>{
       console.log("Įrašas pridėtas, atsakymas: ");
       console.log(response);
