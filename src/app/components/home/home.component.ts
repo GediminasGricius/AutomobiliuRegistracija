@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Registration } from 'src/app/models/registration';
+import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public registrations:Registration[]=[];
+
+  constructor(private registrationService:RegistrationService) { }
 
   ngOnInit(): void {
+    this.registrationService.getRegistrations().subscribe((response)=>{
+        this.registrations=response;
+    });
   }
 
 }
