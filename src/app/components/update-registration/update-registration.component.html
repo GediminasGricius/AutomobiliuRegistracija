@@ -1,0 +1,32 @@
+<p></p>
+<div class="card">
+    <div class="card-header"><b>{{registration.reg_number}}</b> automobilio redagavimas</div>
+    <div class="card-body">
+        <div *ngIf="isData">
+            <form action="" (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="mb-3">
+                    <label for="" class="form-label">Automobilio markė</label>
+                    <input type="text" id="" class="form-control" ngModel name="mark"  required minlength="3"  maxlength="16" [(ngModel)]="registration.mark"> 
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Automobilio modelis</label>
+                    <input type="text"  id="" class="form-control" ngModel name="model" required minlength="2"  maxlength="16" [(ngModel)]="registration.model">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Gamybos metai</label>
+                    <input type="number"  id="" class="form-control" ngModel name="year" required min="1900" max="2022" #year="ngModel" [(ngModel)]="registration.year">
+                    <span class="help-block" *ngIf="!year.valid && year.touched">Automobilio gamybos metai turi būti vėlesni nei 1900 ir ne didesni nei šie metai (2022)</span>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Registracijos numeris</label>
+                    <input type="text"  id="" class="form-control" ngModel name="reg_number" required minlength="6"  maxlength="6" CarNumberValidator  [(ngModel)]="registration.reg_number"> 
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Telefonas</label>
+                    <input type="text"  id="" class="form-control" ngModel name="phone" required minlength="10"  maxlength="12" [(ngModel)]="registration.phone">
+                </div>
+                <button type="submit" class="btn btn-success" >Registruoti</button>
+            </form>
+        </div>
+    </div>
+</div>

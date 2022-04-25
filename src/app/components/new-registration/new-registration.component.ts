@@ -33,7 +33,5 @@ export class NewRegistrationComponent implements OnInit {
       this.router.navigate(["/"]);
     });
    
-   
   }
-
 }

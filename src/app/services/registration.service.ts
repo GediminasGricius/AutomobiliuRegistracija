@@ -19,6 +19,13 @@ export class RegistrationService {
     return this.http.post<{name:string}>(this.url+"/registrations.json",registration);
   }
 
+  public getRegistration(id:String){
+    return this.http.get<Registration>(this.url+"/registrations/"+id+".json").pipe( map((response)=>{
+      response.id=id;
+      return response;
+    }));
+  }
+
   public getRegistrations(){
     return this.http.get<{[key:string]:Registration}>(this.url+"/registrations.json").pipe( map((response)=>{
       const regArray:Registration[]=[];
@@ -27,6 +34,10 @@ export class RegistrationService {
       }
       return regArray;
     }));
+  }
+
+  public updateRegistration(registration:Registration){
+    return this.http.patch(this.url+"/registrations/"+registration.id+".json", registration);
   }
 
   public deleteRegistration(id:String){

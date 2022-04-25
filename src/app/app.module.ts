@@ -9,6 +9,7 @@ import { NewRegistrationComponent } from './components/new-registration/new-regi
 import { FormsModule } from '@angular/forms';
 import { CarNumberValidatorDirective } from './directives/car-number-validator.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateRegistrationComponent } from './components/update-registration/update-registration.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     HomeComponent,
     NewRegistrationComponent,
-    CarNumberValidatorDirective
+    CarNumberValidatorDirective,
+    UpdateRegistrationComponent
   ],
   imports: [
     BrowserModule,
