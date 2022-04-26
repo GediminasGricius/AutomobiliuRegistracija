@@ -21,19 +21,30 @@ export class UpdateRegistrationComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.registrationService.getRegistration(this.id).subscribe((response)=>{
-      this.registration=response;
-      this.isData=true;
-      console.log(this.registration);
-    })
+    this.registrationService.getRegistration(this.id).subscribe({
+     next: (response)=>{
+            this.registration=response;
+            this.isData=true;
+            console.log(this.registration);
+        },
+      error: (error)=>{
+        // Kai įvyksta klaida....
+      }  
+     }
+    )
   }
 
   public onSubmit(){
    
     
     console.log(this.registration);
-    this.registrationService.updateRegistration(this.registration).subscribe(()=>{
-      this.router.navigate(["/"]);
+    this.registrationService.updateRegistration(this.registration).subscribe({
+        next:()=>{
+          this.router.navigate(["/"]);
+      },
+      error:()=>{
+
+      }
     });
   }
 
