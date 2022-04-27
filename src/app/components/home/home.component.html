@@ -22,12 +22,16 @@
                     <td>{{ registration.year }}</td>
                     <td>{{ registration.phone }}</td>
                     <td>
-                        <a class="btn btn-success" [routerLink]="['/update',registration.id]" >Redaguoti</a>&nbsp;
-                        <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Ištrinti</button>
+                        <div *ngIf="isLoggedin">
+                            <a class="btn btn-success" [routerLink]="['/update',registration.id]" >Redaguoti</a>&nbsp;
+                            <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Ištrinti</button>
+                        </div>
                     </td>
 
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="!isLoggedin">Norėdami redaguoti arba ištrinti įrašus turite <a routerLink="/login">prisijungti</a>.</div>
+        <div *ngIf="isLoggedin">Jūs esate prisijungęs kaip: {{ user?.email }}. <a class="btn btn-primary" (click)="onLogout()" >Atsijungti</a></div>
     </div>
 </div>
