@@ -1,1 +1,23 @@
-<a routerLink="/">Home</a> &nbsp; <a routerLink="/new">New</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Automobilių registracija</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Registracijų sąrašas</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/new">Sukurti naują registraciją</a>
+            </li>
+         
+        </ul>
+        <div *ngIf="isLoggedin" class="d-flex me-2" >Jūs esate prisijungęs: <b>{{ user?.email }}</b> </div>
+        <a  *ngIf="!isLoggedin" class="btn btn-primary d-flex" routerLink="/login">Prisijungti</a>
+        <button *ngIf="isLoggedin" class="btn btn-primary d-flex" (click)="onLogout()">Atsijungti</button>
+      </div>
+    </div>
+  </nav>
+
