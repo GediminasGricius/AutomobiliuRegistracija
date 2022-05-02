@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header">Pridėti naują techninės apžiūros darbuotoją</div>
+    <div class="card-body">
+        <form [formGroup]="technicianForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Vardas:</label>
+                <input type="text" formControlName="name" class="form-control" >
+                <span class="help-block" *ngIf="!technicianForm.get('name')?.valid && technicianForm.get('name')?.touched">Vardas yra privalomas ir turi būti nuo 3 iki 16 simbolių</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Pavardė:</label>
+                <input type="text" formControlName="surname" class="form-control">
+                <span class="help-block" *ngIf="!technicianForm.get('surname')?.valid && technicianForm.get('surname')?.touched">Pavardė yra privaloma ir turi būti nuo 3 iki 16 simbolių</span>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Lygis (1,3,5)</label>
+                <input type="number" class="form-control" formControlName="level">
+                <span class="help-block" *ngIf="!technicianForm.get('level')?.valid && technicianForm.get('level')?.touched">Galimas techniko lygis 1,3,5. 2 ir 4 lygio technikai netinkami</span>
+            </div>
+            <button type="submit" [disabled]="!technicianForm.valid" class="btn btn-success" >Pridėti</button>
+        </form>
+    </div>
+    
+</div>
