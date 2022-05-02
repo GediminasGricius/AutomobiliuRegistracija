@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-technician',
@@ -13,7 +13,8 @@ export class NewTechnicianComponent implements OnInit {
     this.technicianForm=new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
-      'level':new FormControl(null, [Validators.required, this.checkLevel])
+      'level':new FormControl(null, [Validators.required, this.checkLevel]),
+      'education':new FormArray([])
     });
   }
 
@@ -31,6 +32,15 @@ export class NewTechnicianComponent implements OnInit {
     }else{
       return {'levelIncorect':true}
     }
+  }
+
+  addEducation(){
+    const input=new FormControl(null, Validators.required);
+    (<FormArray>this.technicianForm.get('education')).push(input);
+  }
+
+  get educations(){
+    return (<FormArray>this.technicianForm.get('education')).controls;
   }
 
 }
