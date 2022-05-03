@@ -26,6 +26,23 @@
                 </div>
             </div>
             <hr>
+            <h4>Darbo adresai</h4>
+            <button type="button" class="btn btn-success" (click)="addAddress()">Pridėti naują adresą</button>
+            <div formArrayName="address">
+                <div *ngFor="let adr of addresses; let i=index">
+                    <div class="row mt-3 mb-3" [formGroup]="toFromGroup(adr)" >
+                        <div class="col-md-6">
+                            <label for="" class="form-label">Miestas</label>
+                            <input type="text" class="form-control" formControlName="city">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label">Gatvė ir namo numeris</label>
+                            <input type="text" class="form-control" formControlName="street">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <button type="submit" [disabled]="!technicianForm.valid" class="btn btn-success" >Pridėti</button>
         </form>
     </div>

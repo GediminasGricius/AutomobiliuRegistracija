@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-technician',
@@ -14,7 +14,8 @@ export class NewTechnicianComponent implements OnInit {
       'name':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
       'level':new FormControl(null, [Validators.required, this.checkLevel]),
-      'education':new FormArray([])
+      'education':new FormArray([]),
+      'address':new FormArray([])
     });
   }
 
@@ -39,8 +40,24 @@ export class NewTechnicianComponent implements OnInit {
     (<FormArray>this.technicianForm.get('education')).push(input);
   }
 
+  addAddress(){
+    const address=new FormGroup({
+      city:new FormControl(null, Validators.required),
+      street:new FormControl(null, Validators.required)
+    });
+    (<FormArray>this.technicianForm.get('address')).push(address);
+  }
+
+  get addresses(){
+    return (<FormArray>this.technicianForm.get('address')).controls;
+  }
+
   get educations(){
     return (<FormArray>this.technicianForm.get('education')).controls;
+  }
+
+  toFromGroup(el:AbstractControl):FormGroup{
+    return <FormGroup>el;
   }
 
 }
