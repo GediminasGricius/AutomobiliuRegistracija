@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TechniciansService } from 'src/app/services/technicians.service';
 
 @Component({
   selector: 'app-new-technician',
@@ -9,7 +10,7 @@ import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '
 export class NewTechnicianComponent implements OnInit {
   public technicianForm:FormGroup;
   
-  constructor() { 
+  constructor(private techService:TechniciansService) { 
     this.technicianForm=new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
@@ -23,8 +24,10 @@ export class NewTechnicianComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.technicianForm.value);
-    this.technicianForm.reset();
+    this.techService.addNewTechnician(this.technicianForm.value).subscribe(()=>{
+      this.technicianForm.reset();
+    })
+   
   }
 
   checkLevel(control:FormControl): {[s:string]:boolean}|null {

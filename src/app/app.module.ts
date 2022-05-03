@@ -13,6 +13,7 @@ import { UpdateRegistrationComponent } from './components/update-registration/up
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { NewTechnicianComponent } from './components/new-technician/new-technician.component';
+import { TechniciansComponent } from './components/technicians/technicians.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NewTechnicianComponent } from './components/new-technician/new-technici
     CarNumberValidatorDirective,
     UpdateRegistrationComponent,
     AuthComponent,
-    NewTechnicianComponent
+    NewTechnicianComponent,
+    TechniciansComponent
   ],
   imports: [
     BrowserModule,

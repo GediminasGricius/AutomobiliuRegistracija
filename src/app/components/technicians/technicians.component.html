@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header">Technikų sąrašas</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Vardas</th>
+                    <th>Pavardė</th>
+                    <th>Lygis</th>
+                    <th>Išsilavinimas</th>
+                    <th>Adresai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let technician of technicians">
+                    <td>{{technician.name }}</td>
+                    <td>{{technician.surname }}</td>
+                    <td>{{technician.level }}</td>
+                    <td>
+                        <div *ngFor="let education of technician.education">{{education}}</div>
+                    </td>
+                    <td>
+                        <div *ngFor="let address of technician.address">{{address.city}}, {{address.street}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
