@@ -16,6 +16,7 @@ export class TechniciansService {
 
 
   public addNewTechnician(tecnician:Technician){
+
     return this.http.post<{name:string}>(this.url+"/technician.json",tecnician);
   }
 
@@ -32,12 +33,16 @@ export class TechniciansService {
   public isCityAvailable(city:String){
     return this.http.get<number|null>(this.url+"/cities/"+city+".json").pipe(
       map((respons)=>{
-        if (respons==null){
+        if (respons==null || respons==0){
           return false;
         }else{
+        
           return true;
         }
       }));
-   
+  }
+
+  public decreaseCityPlaces(city:string){
+    return this.http.patch(this.url+"/cities.json", {[city]:0});
   }
 }

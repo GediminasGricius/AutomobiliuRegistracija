@@ -1,7 +1,13 @@
 <div class="card">
     <div class="card-header">Pridėti naują techninės apžiūros darbuotoją</div>
-    <div class="card-body">
-        <form [formGroup]="technicianForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="technicianForm" (ngSubmit)="onSubmit()">
+    <div class="card-body" [@errors]="formState" style="overflow: hidden;">
+<!--
+        <div style="width:100px; height: 100px;" [@blokelis]="busena" ></div>
+        <br><br>
+        <button class="btn btn-success" (click)="animuoti()">Animuoti</button>
+-->
+        
             <div class="mb-3">
                 <label class="form-label">Vardas:</label>
                 <input type="text" formControlName="name" class="form-control" >
@@ -21,7 +27,7 @@
             <h4>Išsilavinimas</h4>
             <button type="button" class="btn btn-success" (click)="addEducation()" >Pridėti išsilavinimo įrašą</button>
             <div formArrayName="education">
-                <div class="mb-3 mt-3" *ngFor="let educationItem of educations; let i = index">
+                <div class="mb-3 mt-3" *ngFor="let educationItem of educations; let i = index" [@list]>
                     <input type="text" class="form-control" [formControlName]="i">
                 </div>
             </div>
@@ -45,8 +51,11 @@
 
                 </div>
             </div>
-            <button type="submit" [disabled]="!technicianForm.valid" class="btn btn-success" >Pridėti</button>
-        </form>
+            
+        
     </div>
-    
+    <div class="card-body">
+        <button type="submit" [disabled]="!technicianForm.valid" class="btn btn-success" >Pridėti</button>
+    </div>
+    </form>
 </div>
