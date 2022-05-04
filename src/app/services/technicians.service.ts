@@ -28,4 +28,16 @@ export class TechniciansService {
       return technicians;
     }))
   }
+
+  public isCityAvailable(city:String){
+    return this.http.get<number|null>(this.url+"/cities/"+city+".json").pipe(
+      map((respons)=>{
+        if (respons==null){
+          return false;
+        }else{
+          return true;
+        }
+      }));
+   
+  }
 }

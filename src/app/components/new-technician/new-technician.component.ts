@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { delay, map, Observable, of } from 'rxjs';
 import { TechniciansService } from 'src/app/services/technicians.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class NewTechnicianComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
   }
 
   onSubmit(){
@@ -30,7 +32,7 @@ export class NewTechnicianComponent implements OnInit {
    
   }
 
-  checkLevel(control:FormControl): {[s:string]:boolean}|null {
+  checkLevel(control:FormControl): ValidationErrors|null {
     if (control.value=='1' || control.value=='3' || control.value=='5'){
       return null;
     }else{
@@ -45,7 +47,7 @@ export class NewTechnicianComponent implements OnInit {
 
   addAddress(){
     const address=new FormGroup({
-      city:new FormControl(null, Validators.required),
+      city:new FormControl(null, Validators.required, this.cityInDatabase()),
       street:new FormControl(null, Validators.required)
     });
     (<FormArray>this.technicianForm.get('address')).push(address);
@@ -62,5 +64,38 @@ export class NewTechnicianComponent implements OnInit {
   toFromGroup(el:AbstractControl):FormGroup{
     return <FormGroup>el;
   }
+
+  cityInDatabase():AsyncValidatorFn{
+    return (control:AbstractControl):Observable<ValidationErrors|null>=>{
+      return this.techService.isCityAvailable(control.value).pipe( map((response)=>{
+        if (response==true){
+          return null;
+        }else{
+          return {"Miestas neegzistuoja DB":true};
+        }
+      }) );
+    }
+  }
+
+/*
+ checkIfCityAvailable(city:String):Observable<boolean>{
+  return of(city=='Vilnius').pipe(delay(10000));
+ }
+
+
+  allowedCities():AsyncValidatorFn{
+    return (cotrol:AbstractControl):Observable<ValidationErrors|null>=>{
+      return this.checkIfCityAvailable(cotrol.value).pipe( map((result)=>{
+        if (result==true){
+          return null;
+        }else{
+          return {"klaida":true};
+        }
+      }));
+    };
+  
+
+  }
+  */
 
 }
